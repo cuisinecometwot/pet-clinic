@@ -6,16 +6,12 @@ class Owner{
   private $email;
   private $phone;
   
-  public function __construct($ownerID, $email, $name, $phone){
+  public function __construct($ownerID, $name, $email, $phone){
     $this->ownerID = ($ownerID >= 0) ? $ownerID : 0;
     $this->email = $email;
     $this->name = $name;
     $this->phone = $phone;
   }
-
-	public function setOwnerID($newID){
-		$this->ownerID = $newID;
-	}
 	
 	public function setEmail($newEmail){
 		$this->email = $newEmail;
@@ -44,7 +40,6 @@ class Owner{
   	public function getEmail(){
     	return $this->email;
   	}
-  
 }
 
 ?>

@@ -18,48 +18,49 @@ body{
   position: relative;
 }
 
-.wrapper .sidebar{
+.wrapper .s1debar{
   width: 200px;
   height: 100%;
   background: #00b074; /*4b4276*/
-  padding: 30px 0px;
+  padding: 0px 0px;
   position: fixed;
 }
 
-.wrapper .sidebar h2{
+.wrapper .s1debar h3{
   color: #fff;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-.wrapper .sidebar ul li{
+.wrapper .s1debar ul li{
   padding: 15px;
   border-bottom: 1px solid #ffffff;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   border-top: 1px solid rgba(255,255,255,0.05);
 }    
 
-.wrapper .sidebar ul li a{
+.wrapper .s1debar ul li a{
   color: #ffffff; //bdb8d7 8fce00
   display: block;
 }
 
-.wrapper .sidebar ul li a .fas{
+.wrapper .s1debar ul li a .fas{
   width: 25px;
 }
 
-.wrapper .sidebar ul li:hover{
+.wrapper .s1debar ul li:hover{
   background-color: #8fce00;
 }
     
-.wrapper .sidebar ul li:hover a{
+.wrapper .s1debar ul li:hover a{
   color: #fff;
 }
 
 .wrapper .main_content{
-  width: 100%;
-  margin-left: 200px;
+  width: 500%;
+  margin-right: 100px;
+  text-align: left;
 }
 
 .wrapper .main_content .header{

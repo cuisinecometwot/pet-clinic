@@ -6,11 +6,13 @@
 // Remember to run Postgres Docker!
 include 'displayErrors.php';
 $HOST = "localhost";
-$DB = "petcare";
+$DB = "petclinic";
 $USER = "myuser";
 $PWD = "mypassword";
 
-session_start();
+if (session_status() == PHP_SESSION_NONE)
+	session_start();
+  
 $conn = pg_connect("host=$HOST dbname=$DB user=$USER password=$PWD") or die();
 if(!$conn) exit();
 

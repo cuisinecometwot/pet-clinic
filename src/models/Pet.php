@@ -1,5 +1,5 @@
 <?php
-include 'displayErrors.php';
+include '../utils/displayErrors.php';
 class Pet{
 	private $petID; // retrieve from DB
 	private $name; // Pet name
@@ -9,14 +9,15 @@ class Pet{
 	private $notes;
 	private $ownerID; // retrieve from DB
 	
-	public function __construct($ownerID, $name, $gender, $age = null, $species = null, $notes = null){
-		$this->name = $name;
-		$this->age = $age;
-		$this->gender = $gender;
-		$this->species = $species;	
-		$this->notes = $notes;
-		$this->ownerID = $ownerID;
-	}
+	public function __construct($id, $name, $age, $gender, $species, $notes, $ownerId) {
+    	$this->id = $id;
+    	$this->name = $name;
+    	$this->age = $age;
+    	$this->gender = $gender;
+    	$this->species = $species;
+    	$this->notes = $notes;
+    	$this->ownerId = $ownerId;
+  }
 
 	public function getPetID(){
 		return $this->petID;

@@ -25,7 +25,7 @@ CREATE TABLE staff (
     staffID SERIAL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     email VARCHAR(50) NOT NULL REFERENCES clinic_login(email),
-    role VARCHAR(10)
+    role VARCHAR(10) 
 );
 
 CREATE TABLE pet (
@@ -34,26 +34,17 @@ CREATE TABLE pet (
     age INT DEFAULT 0,
     gender VARCHAR(10),
     species VARCHAR(20),
-    note VARCHAR(500),
+    notes VARCHAR(500),
     ownerID INT REFERENCES owner(ownerID)
-);
-
-CREATE TABLE service (
-    serviceID SERIAL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,  -- Name of the service (e.g., Exam, Grooming, Boarding)
-    description VARCHAR(500),
-    price INT
 );
 
 CREATE TABLE record (
 	recordID SERIAL PRIMARY KEY,
-	serviceID INT REFERENCES service(serviceID),
+	serviceID INT,
 	petID INT REFERENCES pet(petID),
-    staffID INT REFERENCES staff(staffID),  -- Staff member who performed
 	time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	note VARCHAR(500)
+	status VARCHAR(30)
 );
-
 
 INSERT INTO owner_login VALUES ('nguyenhuuduc2109@gmail.com', '88888888');
 INSERT INTO owner_login VALUES ('litteboy@gmail.com', '66666666');
@@ -61,11 +52,11 @@ INSERT INTO owner_login VALUES ('litteboy@gmail.com', '66666666');
 INSERT INTO owner(name, email) VALUES ('Ng Huu Duc', 'nguyenhuuduc2109@gmail.com');
 INSERT INTO owner(email) VALUES ('litteboy@gmail.com');
 
-INSERT INTO pet (name, age, gender, species, note, ownerID) VALUES
+INSERT INTO pet (name, age, gender, species, notes, ownerID) VALUES
   ('Luna', 3, 'Female', 'Cat', 'Loves cuddles and chasing butterflies', 1),
   ('Max', 2, 'Male', 'Dog', 'Energetic Golden Retriever, enjoys walks and fetching', 2),
-  ('Bubbles', 1, 'Female', 'Fish', 'Orange Betta fish, very active', 1),
-  ('Charlie', 5, 'Male', 'Parrot', 'Blue and Gold Macaw, talks a lot and loves to sing', 2),
+  ('Bubbles', 1, 'Female', 'Fish', 'Orange Betta fish, very active', 3),
+  ('Charlie', 5, 'Male', 'Parrot', 'Blue and Gold Macaw, talks a lot and loves to sing', 4),
   ('Willow', 1, 'Female', 'Rabbit', 'Fluffy Holland Lop, loves munching on hay', 1);
 
 

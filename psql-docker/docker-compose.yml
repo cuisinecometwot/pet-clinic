@@ -3,10 +3,11 @@ version: "3"  # Specify a compatible Docker Compose version
 services:
   postgres:
     image: postgres:latest  # Use the latest official Postgres image
+    restart: always
     environment:
       POSTGRES_USER: myuser  # Username for the database
       POSTGRES_PASSWORD: mypassword  # Password for the database
-      POSTGRES_DB: petcare  # Name of the database to create
+      POSTGRES_DB: petclinic  # Name of the database to create
     ports:
       - "5432:5432"  # Map container port 5432 to host port 5432
     volumes:

@@ -1,9 +1,7 @@
 <?php
-	if (session_status() == PHP_SESSION_NONE)
-        session_start();
- 
+include '../utils/connect.php';
 	if (!isset($_SESSION['user'])){
-		include '../utils/connect.php';
+		
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$role = $_POST['role'];
