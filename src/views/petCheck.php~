@@ -18,7 +18,7 @@
       		{
         			$petId = $pet->getPetID(); // Access pet ID from the Pet object
         			$petName = $pet->getName(); // Access pet name from the Pet object
-        			echo "<option value='$petId'>$petName</option>";
+        			echo "<option value='{$petId}'>{$petName}</option>";
       		}
       		?>
         		</select>

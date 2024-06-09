@@ -47,7 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	$result = pg_prepare($conn, "insert_pet", $query);
   	$result = pg_execute($conn, "insert_pet", array($petName, $petAge, $petGender, $petSpecies, $petNote, $ownerId));
 
-	header("Location: Dashboard.php?p=myPets");
+	if ($result)
+	{
+	
+	}
+	else 
+	{
+	}
 }
 
 ?>

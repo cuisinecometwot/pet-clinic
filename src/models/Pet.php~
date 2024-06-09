@@ -68,8 +68,7 @@ class Pet
    }
 }
 
-if ($_SESSION['role'] == 'owner') 
-{
+if ($_SESSION['role'] == 'owner') {
    $pets = []; // Initialize an empty array to store Pet objects
 
    $sql = "SELECT * FROM pet WHERE ownerid = (SELECT ownerid FROM owner WHERE email = $1)";
@@ -94,5 +93,4 @@ if ($_SESSION['role'] == 'owner')
       	$pets[] = $pet; // Add the Pet object to the pets array
     	}
   	}
-}
 ?>

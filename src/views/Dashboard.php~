@@ -27,12 +27,7 @@
 </head>
 <body>
 <div class="wrapper">
-    <?php include 'dashboardSidebar.php'; 
-	 if (isset($_GET['page'])) {
-  	 	 // Store the "page" value in the session
-  		 $_SESSION['current_page'] = (int) $_GET['page'];
-	 }
-    ?>
+    <?php include 'dashboardSidebar.php'; ?>
     <div class="main_content">
 	     <div class="header">Welcome! Have a nice day.</div>  
         <div class="content" id="content">

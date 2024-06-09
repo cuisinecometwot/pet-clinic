@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE)
 $ownerMenu = array(
 	"Homepage" => "index.php",
 	"My Profile" => "?p=myProfile",
-	"My Pets" => "?p=myPets",
+	"My Pets" => "?p=myPets&page=",
 	"Đặt lịch khám" => "?p=petCheck",
 	"Dịch vụ vệ sinh - làm đẹp" => "?p=petCare",
 	"Dịch vụ lưu giữ" => "?p=petHotel",

@@ -2,7 +2,7 @@
 include '../utils/connect.php';
 include '../utils/displayErrors.php';
 require '../models/Pet.php';
-
+var_dump($pets);
 $currentPage = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;
 $perPage = 5; // Number of pets per page
 

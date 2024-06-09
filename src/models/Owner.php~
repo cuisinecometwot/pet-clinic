@@ -1,6 +1,5 @@
 <?php
-class Owner
-{
+class Owner{
   private $ownerID;
   private $name;
   private $email;
