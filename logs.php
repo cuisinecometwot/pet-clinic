@@ -2,6 +2,7 @@
 include 'utils/connect.php';
 include 'models/Record.php';
 
+//TODO: Select Where petid In (Select petid From pet where ownerid = $profile->getID())
 $healthQuery = "SELECT * FROM health_record";
 $beautyQuery = "SELECT * FROM beauty_service";
 
