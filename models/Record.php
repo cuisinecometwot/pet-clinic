@@ -94,9 +94,4 @@ class BeautyService extends Record
     return $this->cost;
   }
 }
-// test
-
-
-$healthRecord = new HealthRecord(5, "2024-06-24", "09:00", 50000);
-var_dump($healthRecord);
 ?>
