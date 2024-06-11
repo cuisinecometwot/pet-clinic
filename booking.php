@@ -75,39 +75,3 @@
   	</div>
 </body>
 </html>
-<?php
-include 'utils/connect.php';
-include_once 'models/Record.php';
-
-// Get form data
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$petId = $_POST['petSelect'];
-	$date = $_POST['dateSelect'];
-	$time = $_POST['timeSelect'];
-
-	$hasHealthCheck = isset($_POST['health-check']); // Check if health-check is checked
-	$hasSpa = isset($_POST['spa']); // Check if spa is checked
-
-	// Validate date and time
-	$currentTime = strtotime(date('Y-m-d H:i'));
-	$bookingTime = strtotime("$date $time");
-	if ($bookingTime < $currentTime) 
-	{
-  		echo "Error: Booking date and time cannot be in the past.";
-  		exit;
-	}
-
-
-	if ($hasHealthCheck) 
-	{
-  		$healthRecord = new HealthRecord($petId, $date, $time, 20000);
-  		var_dump($healthRecord);
-	}
-
-	if ($hasSpa) 
-	{
-		$spaRecord = new BeautyService($petId, $date, $time, 20000);
-		var_dump($spaRecord);
-	}
-}
-?>
