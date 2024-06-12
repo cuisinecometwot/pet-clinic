@@ -16,7 +16,7 @@
         <!-- Filtering and sorting options -->
         <div>
     <form id="filterForm" action="hotel/filter.php" method="GET">
-        <label for="idSearch">Search Room ID:</label>
+        <label for="idSearch">Search pet ID:</label>
         <input type="text" id="idSearch" name="idSearch">                
         <label for="filter">Sort:</label>
         <select id="filter" name="filter">
@@ -50,7 +50,7 @@
                 
                 // Search by Room ID
                 if(!empty($idSearch)) {
-                    $sql .= " WHERE id = $idSearch";
+                    $sql .= " WHERE petid = $idSearch";
                 }
 
                 // Sorting
