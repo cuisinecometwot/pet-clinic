@@ -15,20 +15,20 @@
 
         <!-- Filtering and sorting options -->
         <div>
-            <form id="filterForm" action="hotel/filter.php" method="GET">
-                <label for="idSearch">Search Room ID:</label>
-                <input type="text" id="idSearch" name="idSearch" value="<?php echo isset($_SESSION['idSearch']) ? htmlspecialchars($_SESSION['idSearch']) : ''; ?>">
-                
-                <label for="filter">Sort:</label>
-                <select id="filter" name="filter">
-                    <option value="occupied" <?php if(isset($_SESSION['filter']) && $_SESSION['filter'] == 'occupied') echo 'selected'; ?>>Occupied</option>
-                    <option value="available" <?php if(isset($_SESSION['filter']) && $_SESSION['filter'] == 'available') echo 'selected'; ?>>Available</option>
-                    <option value="id" <?php if(isset($_SESSION['filter']) && $_SESSION['filter'] == 'id') echo 'selected'; ?>>Id</option>
-                </select>
+    <form id="filterForm" action="hotel/filter.php" method="GET">
+        <label for="idSearch">Search Room ID:</label>
+        <input type="text" id="idSearch" name="idSearch">                
+        <label for="filter">Sort:</label>
+        <select id="filter" name="filter">
+            <option value="id">ID</option>
+            <option value="occupied">Occupied</option>
+            <option value="available">Available</option>
+        </select>
 
-                <button type="submit">Apply Filters</button>
-            </form>
-        </div>
+        <button type="submit">Apply Filters</button>
+    </form>
+</div>
+
 
         <!-- Room grid layout -->
         <div class="room-grid">
