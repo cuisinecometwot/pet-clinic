@@ -13,6 +13,7 @@
 
     		if (page) { // Check if 'p' exists
       		const phpFile = page + ".php"; // Construct the PHP filename
+			
       		fetch(phpFile)
         		.then(response => response.text())
         		.then(data => {
@@ -31,6 +32,9 @@
 	 if (isset($_GET['page'])) {
   		 $_SESSION['current_page'] = (int) $_GET['page'];
 	 }
+	 if (isset($_GET['object_id'])) {
+		$_SESSION['object_id'] = (int) $_GET['object_id'];
+  }
     ?>
     <div class="main_content">
 	     <div class="header">Welcome! Have a nice day.</div>  

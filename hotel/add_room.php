@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $roomImageLink = pg_escape_string($conn, $_POST['roomImageLink']);
 
         // Prepare and execute query
-        $query = "INSERT INTO hotel_room (size, occupied, condition, image_link) VALUES ($1, $2, $3, $4)";
+        $query = "INSERT INTO hotel_room (description, occupied, condition, image_link) VALUES ($1, $2, $3, $4)";
         $result = pg_prepare($conn, "insert_hotel_room", $query);
         $result = pg_execute($conn, "insert_hotel_room", array($roomDescription, $roomOccupied, $roomCondition, $roomImageLink));
 

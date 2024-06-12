@@ -78,13 +78,15 @@
                     echo "<div class='room-grid'>";
                     $counter = 0;
                     while ($row = pg_fetch_assoc($result)) {
-                        $room = new HotelRoom($row['id'], $row['size'], $row['occupied'], $row['condition'], $row['image_link']);
+                        $room = new HotelRoom($row['id'], $row['description'], $row['occupied'], $row['condition'], $row['image_link']);
+                        echo "<a href='Dashboard.php?p=hotel/modify_room&object_id=" . $room->getId() . "' style='text-decoration: none; color: inherit;'>";
                         echo "<div class='room-card'>";
                         echo "<img src='" . ($room->getImageLink() ? $room->getImageLink() : 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F004%2F141%2F669%2Foriginal%2Fno-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg&f=1&nofb=1&ipt=bce4d230e8665ab4deabd81fbe46e59f1fb848eecb7e217d6f8094a4e5c319fd&ipo=images') . "' alt='Room Image' class='room-image'>";
                         echo "<h3>Room no: " . $room->getId() . "</h3>";
                         echo "<p>Condition: " . $room->getCondition() . "</p>";
                         echo "<p>" . ($room->isOccupied() ? 'Occupied' : 'Available') . "</p>";
                         echo "</div>";
+                        echo "</a>";
                         $counter++;
                         if ($counter % 4 == 0) { // Start a new row after every 4 rooms
                             echo "<div class='clear'></div>"; // Clear float
