@@ -1,6 +1,5 @@
 <?php
 include 'utils/connect.php';
-include 'utils/displayErrors.php';
 require 'models/Pet.php';
 
 $currentPage = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;

@@ -2,9 +2,9 @@
 
 abstract class Record 
 {
-  protected $petId;
-  protected $date;
-  protected $time;
+  private $petId;
+  private $date;
+  private $time;
 
   public function __construct($petId, $date, $time) {
     $this->petId = $petId;
@@ -27,11 +27,11 @@ abstract class Record
 
 class HealthRecord extends Record 
 {
-  protected $veterinarian;
-  protected $medInstruction;
-  protected $dietInstructions;
-  protected $additionalInstructions;
-  protected $cost;
+  private $veterinarian;
+  private $medInstruction;
+  private $dietInstructions;
+  private $additionalInstructions;
+  private $cost;
 
   public function __construct($petId, $date, $time, $cost, $veterinarian=null, $medInstruction=null, $dietInstructions=null, $additionalInstructions=null) {
     parent::__construct($petId, $date, $time);
@@ -65,10 +65,10 @@ class HealthRecord extends Record
 
 class BeautyService extends Record 
 {
-  protected $serviceType;
-  protected $serviceProvider;
-  protected $notes;
-  protected $cost;
+  private $serviceType;
+  private $serviceProvider;
+  private $notes;
+  private $cost;
 
   public function __construct($petId, $date, $time, $cost, $serviceType=null, $serviceProvider=null, $notes=null) {
     parent::__construct($petId, $date, $time);
@@ -94,3 +94,4 @@ class BeautyService extends Record
     return $this->cost;
   }
 }
+?>

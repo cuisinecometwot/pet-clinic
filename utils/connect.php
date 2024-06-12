@@ -4,7 +4,8 @@
 // But this way is simplier =.=
 
 // Remember to run Postgres Docker!
-include 'displayErrors.php';
+
+// include 'displayErrors.php';
 $HOST = "localhost";
 $DB = "pet-clinic-ver2";
 $USER = "postgres";
