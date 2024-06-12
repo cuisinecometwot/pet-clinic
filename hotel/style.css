@@ -6,29 +6,35 @@
 .room-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* Add space around cards */
-    gap: 20px; /* Add space between cards */
+    justify-content: space-around; 
+    gap: 20px; 
 }
 
 .room-card {
-    flex: 0 1 250px; /* Adjust width to fit content and image, and allow wrapping */
+    width: 250px; 
     box-sizing: border-box; 
-    padding: 15px; /* Add padding to fit content */
+    padding: 15px; 
+    margin-right: 20px; 
     margin-bottom: 20px; 
     background-color: #f0f0f0; 
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align items */
-    text-align: center; /* Center text */
+    align-items: center; 
+    text-align: center; 
 }
 
+.room-card:last-child {
+    margin-right: 0; 
+}
+
+
 .room-card img {
-    width: 200px; /* Fixed width */
-    height: 200px; /* Fixed height */
+    width: 200px; 
+    height: 200px; 
     border-radius: 5px; 
-    object-fit: cover; /* Maintain aspect ratio, cover the box */
+    object-fit: cover; 
 }
 
 .clear {
@@ -36,5 +42,5 @@
 }
 
 .pagination {
-    /* Pagination styles here */
+    
 }

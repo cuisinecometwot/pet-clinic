@@ -1,12 +1,8 @@
 <h3>Add Hotel Room</h3>
 <form action="hotel/add_room.php" method="POST">
     <div class="form-group">
-        <label for="roomSize">Room Size</label>
-        <select class="form-control" id="roomSize" name="roomSize" required>
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
-        </select>
+        <label for="roomDescription">Description</label>
+        <input type="text" class="form-control" id="roomDescription" name="roomDescription" required>
     </div>
     <div class="form-group">
         <label for="roomOccupied">Occupied</label>
@@ -16,8 +12,12 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="roomPrice">Price</label>
-        <input type="number" class="form-control" id="roomPrice" name="roomPrice" min="1" required>
+        <label for="roomCondition">Condition</label>
+        <select class="form-control" id="roomCondition" name="roomCondition" required>
+            <option value="Good">Good</option>
+            <option value="Decent">Decent</option>
+            <option value="Unusable">Unsuable</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="roomImageLink">Image Link</label>
@@ -31,17 +31,17 @@ include '../utils/connect.php';
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if all necessary POST variables are set
-    if(isset($_POST['roomSize']) && isset($_POST['roomOccupied']) && isset($_POST['roomPrice']) && isset($_POST['roomImageLink'])) {
+    if(isset($_POST['roomDescription']) && isset($_POST['roomOccupied']) && isset($_POST['roomCondition']) && isset($_POST['roomImageLink'])) {
         // Retrieve and sanitize form inputs
-        $roomSize = pg_escape_string($conn, $_POST['roomSize']);
+        $roomDescription = pg_escape_string($conn, $_POST['roomDescription']);
         $roomOccupied = ($_POST['roomOccupied'] === 'true') ? 't' : 'f'; // Convert to 't' or 'f' for PostgreSQL boolean
-        $roomPrice = (int) $_POST['roomPrice'];
+        $roomCondition = pg_escape_string($conn, $_POST['roomCondition']);
         $roomImageLink = pg_escape_string($conn, $_POST['roomImageLink']);
 
         // Prepare and execute query
-        $query = "INSERT INTO hotel_room (size, occupied, price, image_link) VALUES ($1, $2, $3, $4)";
+        $query = "INSERT INTO hotel_room (size, occupied, condition, image_link) VALUES ($1, $2, $3, $4)";
         $result = pg_prepare($conn, "insert_hotel_room", $query);
-        $result = pg_execute($conn, "insert_hotel_room", array($roomSize, $roomOccupied, $roomPrice, $roomImageLink));
+        $result = pg_execute($conn, "insert_hotel_room", array($roomDescription, $roomOccupied, $roomCondition, $roomImageLink));
 
         if ($result) {
             header("Location: /Dashboard.php?p=hotel/hotelManager");

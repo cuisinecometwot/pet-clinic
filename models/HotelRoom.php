@@ -1,16 +1,16 @@
 <?php
 class HotelRoom {
     private $id;
-    private $size;
+    private $description;
     private $occupied;
-    private $price;
+    private $condition;
     private $imageLink;
 
-    public function __construct($id, $size, $occupied, $price, $imageLink) {
+    public function __construct($id, $description, $occupied, $condition, $imageLink) {
         $this->id = $id;
-        $this->size = $size;
-        $this->occupied = $occupied;
-        $this->price = $price;
+        $this->description = $description;
+        $this->occupied = ($occupied === 't');
+        $this->condition = $condition;
         $this->imageLink = $imageLink;
     }
 
@@ -18,12 +18,12 @@ class HotelRoom {
         return $this->id;
     }
 
-    public function getSize() {
-        return $this->size;
+    public function getDescription() {
+        return $this->description;
     }
 
-    public function setSize($size) {
-        $this->size = $size;
+    public function setDescription($description) {
+        $this->description = $description;
     }
 
     public function isOccupied() {
@@ -34,12 +34,12 @@ class HotelRoom {
         $this->occupied = $occupied;
     }
 
-    public function getPrice() {
-        return $this->price;
+    public function getCondition() {
+        return $this->condition;
     }
 
-    public function setPrice($price) {
-        $this->price = $price;
+    public function setCondition($condition) {
+        $this->condition = $condition;
     }
 
     public function getImageLink() {
