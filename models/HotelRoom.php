@@ -2,14 +2,14 @@
 class HotelRoom {
     private $id;
     private $description;
-    private $occupied;
+    private $petID;
     private $condition;
     private $imageLink;
 
-    public function __construct($id, $description, $occupied, $condition, $imageLink) {
+    public function __construct($id, $description, $petID, $condition, $imageLink) {
         $this->id = $id;
         $this->description = $description;
-        $this->occupied = ($occupied === 't');
+        $this->petID = $petID;
         $this->condition = $condition;
         $this->imageLink = $imageLink;
     }
@@ -26,12 +26,12 @@ class HotelRoom {
         $this->description = $description;
     }
 
-    public function isOccupied() {
-        return $this->occupied;
+    public function getPetID() {
+        return $this->petID;
     }
 
-    public function setOccupied($occupied) {
-        $this->occupied = $occupied;
+    public function setPetID($petID) {
+        $this->petID = $petID;
     }
 
     public function getCondition() {

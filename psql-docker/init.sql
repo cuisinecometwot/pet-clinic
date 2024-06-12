@@ -41,7 +41,7 @@ CREATE TABLE pet (
 CREATE TABLE hotel_room (
     id SERIAL PRIMARY KEY,
     description VARCHAR(100) ,
-    occupied BOOLEAN NOT NULL DEFAULT FALSE,
+    petID INT REFERENCES pet(petID),
     condition VARCHAR(50) NOT NULL,
     image_link VARCHAR(255)
 );
@@ -110,8 +110,8 @@ INSERT INTO service_list VALUES
   	regardless of the duration of their stay.', 200000);
 
 -- HotelRoom data
-INSERT INTO hotel_room (description, occupied, condition,image_link) VALUES
-('First floor to the left', FALSE, 'Good','https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152782/room1_albd3i.jpg'),
-('In the basement', TRUE, 'Decent','https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152791/room2_to9tv7.jpg'),
-('In heaven', FALSE, 'Unusuable','https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152802/room3_yo2zzn.jpg');
+INSERT INTO hotel_room (description, condition,image_link) VALUES
+('First floor to the left',  'Good','https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152782/room1_albd3i.jpg'),
+('In the basement',  'Decent','https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152791/room2_to9tv7.jpg'),
+('In heaven',  'Unusuable','https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152802/room3_yo2zzn.jpg');
 
