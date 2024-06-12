@@ -17,7 +17,7 @@ $staffMenu = array(
 	"Quản lý pets" => "?p=myPets",
 	"Xem lịch khám" => "?p=bookingManager",
 	"Vệ sinh - làm đẹp" => "?p=spaManager",
-	"Lưu giữ" => "?p=hotelManager"
+	"Lưu giữ" => "?p=hotel/hotelManager"
 );
 
 $adminMenu = array(

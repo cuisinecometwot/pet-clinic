@@ -6,9 +6,9 @@
 // Remember to run Postgres Docker!
 include 'displayErrors.php';
 $HOST = "localhost";
-$DB = "petclinic";
-$USER = "myuser";
-$PWD = "mypassword";
+$DB = "pet-clinic-ver2";
+$USER = "postgres";
+$PWD = "123";
 
 if (session_status() == PHP_SESSION_NONE)
 	session_start();

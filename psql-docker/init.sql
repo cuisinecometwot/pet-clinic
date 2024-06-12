@@ -38,6 +38,14 @@ CREATE TABLE pet (
     ownerID INT --REFERENCES profile(uid)
 );
 
+CREATE TABLE hotel_room (
+    id SERIAL PRIMARY KEY,
+    size VARCHAR(50) NOT NULL,
+    occupied BOOLEAN NOT NULL DEFAULT FALSE,
+    price INT NOT NULL,
+    image_link VARCHAR(255)
+);
+
 CREATE TABLE health_record (
     recordID SERIAL PRIMARY KEY,
   	 petID INT REFERENCES pet(petID),
@@ -100,4 +108,10 @@ INSERT INTO service_list VALUES
   (3, 'Pet Hotel', 'Enjoy peace of mind while you are away with our comfortable and secure pet hotel. 
   	We offer spacious accommodations and loving care for your pet, priced at a flat rate of 200,000 VND per day, 
   	regardless of the duration of their stay.', 200000);
+
+-- HotelRoom data
+INSERT INTO hotel_room (size, occupied, price,image_link) VALUES
+('Small', FALSE, 100,'https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152782/room1_albd3i.jpg'),
+('Medium', TRUE, 150,'https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152791/room2_to9tv7.jpg'),
+('Large', FALSE, 200,'https://res.cloudinary.com/dbfuwgyr8/image/upload/v1718152802/room3_yo2zzn.jpg');
 
