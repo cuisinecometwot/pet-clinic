@@ -80,6 +80,16 @@ CREATE TABLE service_list (
     cost INT DEFAULT 50000
 );
 
+CREATE TABLE hotel_record (
+    recordID SERIAL PRIMARY KEY,
+    petID INT REFERENCES pet(petID),
+    check_in DATE,
+    check_out DATE,
+    notes TEXT,
+    --
+    cost INT
+);
+
 INSERT INTO owner_login VALUES ('nguyenhuuduc2109@gmail.com', '88888888');
 INSERT INTO owner_login VALUES ('litteboy@gmail.com', '66666666');
 

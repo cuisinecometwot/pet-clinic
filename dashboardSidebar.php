@@ -7,7 +7,7 @@ $ownerMenu = array(
 	"My Profile" => "?p=myProfile",
 	"My Pets" => "?p=myPets",
 	"Đặt lịch" => "?p=booking",
-	"Dịch vụ lưu giữ" => "?p=hotel",
+	"Dịch vụ lưu giữ" => "?p=hotel/petHotel",
 	"Service Logs" => "?p=logs"
 );
 
