@@ -35,7 +35,8 @@ CREATE TABLE pet (
     gender VARCHAR(10),
     species VARCHAR(20),
     note VARCHAR(500),
-    ownerID INT --REFERENCES profile(uid)
+    ownerID INT, --REFERENCES profile(uid)
+    image_link VARCHAR(500)
 );
 
 CREATE TABLE hotel_room (
@@ -43,7 +44,7 @@ CREATE TABLE hotel_room (
     description VARCHAR(100) ,
     petID INT REFERENCES pet(petID),
     condition VARCHAR(50) NOT NULL,
-    image_link VARCHAR(255)
+    image_link VARCHAR(500)
 );
 
 CREATE TABLE health_record (
@@ -103,12 +104,12 @@ INSERT INTO profile(name, email,rank) VALUES
   ('Admin', 'admin@clinic.com', 'manager'),
   ('Khoa-san', 'khoa@hust.vn', 'staff');
 
-INSERT INTO pet (name, age, gender, species, note, ownerID) VALUES
-  ('Luna', 3, 'Female', 'Cat', 'Loves cuddles and chasing butterflies', 1),
-  ('Max', 2, 'Male', 'Dog', 'Energetic Golden Retriever, enjoys walks and fetching', 2),
-  ('Bubbles', 1, 'Female', 'Fish', 'Orange Betta fish, very active', 1),
-  ('Charlie', 5, 'Male', 'Parrot', 'Blue and Gold Macaw, talks a lot and loves to sing', 2),
-  ('Willow', 1, 'Female', 'Rabbit', 'Fluffy Holland Lop, loves munching on hay', 1);
+INSERT INTO pet (name, age, gender, species, note, ownerID, image_link) VALUES
+  ('Luna', 3, 'Female', 'Cat', 'Loves cuddles and chasing butterflies', 1,'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallup.net%2Fwp-content%2Fuploads%2F2019%2F09%2F110394-cats-grey-kittens-fluffy-fat-grass-animals-cat-kitten-baby-cute.jpg&f=1&nofb=1&ipt=f5ce4bdcc7ff20e99ac0497b4a3773484af28dd9ec916e6d3f576e17e0b03b10&ipo=images'),
+  ('Max', 2, 'Male', 'Dog', 'Energetic Golden Retriever, enjoys walks and fetching', 2,'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.publicdomainpictures.net%2Fpictures%2F40000%2Fvelka%2Fgolden-retriever-dog-1364426710r9x.jpg&f=1&nofb=1&ipt=c92ec5b2d8089d7b3daea9e76aca31867800f85008e4c77cdbb164d1161ddd27&ipo=images'),
+  ('Bubbles', 1, 'Female', 'Fish', 'Orange Betta fish, very active', 1,'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F7%2F77%2FPuffer_Fish_DSC01257.JPG&f=1&nofb=1&ipt=6a6ec241f0c70265e57387b046185eafa54bb0d1024d85679ede30fbe412bb40&ipo=images'),
+  ('Charlie', 5, 'Male', 'Parrot', 'Blue and Gold Macaw, talks a lot and loves to sing', 2,'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.pexels.com%2Fphotos%2F1463295%2Fpexels-photo-1463295.jpeg%3Fcs%3Dsrgb%26dl%3Danimal-beautiful-bright-1463295.jpg%26fm%3Djpg&f=1&nofb=1&ipt=60844910b7df6fe46bc25a4f8cfebc12ae60d4783305169d167fd8bf09a0abd9&ipo=images'),
+  ('Willow', 1, 'Female', 'Rabbit', 'Fluffy Holland Lop, loves munching on hay', 1,'https://squeaksandnibbles.com/wp-content/uploads/2018/02/dwarf-rabbit-header-696x409.jpg');
 
 INSERT INTO service_list VALUES
   (1, 'Health Check', 'Our comprehensive health check includes a physical exam and discussing any necessary 

@@ -6,6 +6,16 @@
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+$(document).ready(function() {
+    // Toggle submenu display on clicking "Service Logs"
+    $('.nav-link').click(function() {
+        $(this).next('.submenu').slideToggle();
+    });
+});
+</script>
+
 	<script type="text/javascript" >
 		window.addEventListener('load', function() {
     		const params = new URLSearchParams(window.location.search);

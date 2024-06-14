@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Calculate the total cost
-        $totalCost = $numDays * $dailyCost;
+        $totalCost = ($numDays+1) * $dailyCost;
 
         // Insert the data into the hotel_record table
         $query = "INSERT INTO hotel_record (petID, check_in, check_out, notes, cost) VALUES ($1, $2, $3, $4, $5)";

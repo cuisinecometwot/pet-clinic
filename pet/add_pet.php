@@ -27,8 +27,8 @@
   	<button type="submit" class="btn btn-success">+ Add</button>
 </form>
 <?php
-include 'utils/connect.php';
-include 'models/Profile.php';
+include '../utils/connect.php';
+include '../models/Profile.php';
 // Check if form is submitted (improves readability)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
