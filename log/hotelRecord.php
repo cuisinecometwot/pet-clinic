@@ -30,6 +30,8 @@ if (!$hotelResult) {
       <th>Check-out</th>
       <th>Notes</th>
       <th>Cost</th>
+      <th>Finished</th>
+      <th>Payment</th>
     </tr>
   </thead>
   <tbody>
@@ -41,11 +43,33 @@ if (!$hotelResult) {
         <td><?php echo $row['check_out']; ?></td>
         <td><?php echo $row['notes']; ?></td>
         <td><?php echo $row['cost']; ?></td>
+        <td><?php echo $row['finished'] === 't' ? 'Yes' : 'No'; ?></td>
+        <td>
+            <?php if ($row['payment'] === 't') : ?>
+                Paid
+            <?php else : ?>
+                <a href="Dashboard.php?p=payment&object_id=<?php echo $row['recordid']; ?>&object_type=hotel_record" style="text-decoration: none; color: inherit;">
+                    Not Paid
+                </a>
+            <?php endif; ?>
+        </td>
       </tr>
     <?php endwhile; ?>
   </tbody>
 </table>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
+<?php 
+$message = null;
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']); 
+}
+if ($message): 
+    $alertClass = (strpos($message, 'Error') === 0) ? 'alert-danger' : 'alert-success';
+?>
+    <div class="alert <?php echo $alertClass; ?>" role="alert">
+      <?php echo $message; ?>
+    </div>
+<?php endif; ?>

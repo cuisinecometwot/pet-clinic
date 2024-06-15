@@ -75,3 +75,16 @@
   	</div>
 </body>
 </html>
+<?php 
+$message = null;
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']); 
+}
+if ($message): 
+    $alertClass = (strpos($message, 'Error') === 0) ? 'alert-danger' : 'alert-success';
+?>
+    <div class="alert <?php echo $alertClass; ?>" role="alert">
+      <?php echo $message; ?>
+    </div>
+<?php endif; ?>

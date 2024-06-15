@@ -1,5 +1,6 @@
 <?php
 include 'utils/connect.php';
+
 if (!isset($_SESSION['object_id']) || !isset($_SESSION['object_type'])) {
     echo "Error: Missing object information.";
     exit();
@@ -7,6 +8,24 @@ if (!isset($_SESSION['object_id']) || !isset($_SESSION['object_type'])) {
 
 $objectId = $_SESSION['object_id'];
 $objectType = $_SESSION['object_type'];
+
+// Determine the redirect URL and SQL update based on object_type
+if ($objectType === 'health_record') {
+    $redirectUrl = '../Dashboard.php?p=log/healthRecord';
+    $updateQuery = "UPDATE health_record SET payment = TRUE WHERE recordid = $1";
+} elseif ($objectType === 'beauty_service') {
+    $redirectUrl = '../Dashboard.php?p=log/beautyService';
+    $updateQuery = "UPDATE beauty_service SET payment = TRUE WHERE serviceid = $1";
+} elseif ($objectType === 'hotel_record') {
+    $redirectUrl = '../Dashboard.php?p=log/hotelRecord';
+    $updateQuery = "UPDATE hotel_record SET payment = TRUE WHERE recordid = $1";
+} else {
+    $redirectUrl = '../Dashboard.php?p=myProfile';
+    $_SESSION['message'] = "Error: Invalid object type.";
+    header("Location: $redirectUrl");
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +34,12 @@ $objectType = $_SESSION['object_type'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Form</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container mt-5">
         <h2>Payment Form</h2>
-        <form action="process_payment.php" method="POST">
+        <form action="payment.php" method="POST">
             <div class="mb-3">
                 <label for="cardNumber" class="form-label">Card Number</label>
                 <input type="text" class="form-control" id="cardNumber" name="card_number" required>
@@ -46,10 +65,8 @@ $objectType = $_SESSION['object_type'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php
-session_start();
-include 'utils/connect.php';
 
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['card_number'], $_POST['card_name'], $_POST['expiry_date'], $_POST['cvv'], $_POST['object_id'], $_POST['object_type'])) {
         $cardNumber = pg_escape_string($conn, $_POST['card_number']);
@@ -60,27 +77,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $objectType = pg_escape_string($conn, $_POST['object_type']);
 
         // Update the payment state in the appropriate table
-        $updateQuery = "UPDATE $objectType SET payment = TRUE WHERE serviceid = $1";
         $result = pg_prepare($conn, "update_payment_state", $updateQuery);
         $result = pg_execute($conn, "update_payment_state", array($objectId));
 
         if ($result) {
             $_SESSION['message'] = "Payment successful.";
-            header("Location: ../Dashboard.php?p=hotel/petHotel");
+            header("Location: $redirectUrl"); // Redirect based on object_type
             exit();
         } else {
             $_SESSION['message'] = "Error updating payment state.";
-            header("Location: ../Dashboard.php?p=hotel/petHotel");
+            header("Location: $redirectUrl"); // Redirect based on object_type
             exit();
         }
     } else {
         $_SESSION['message'] = "Error: Missing required form data.";
-        header("Location: ../Dashboard.php?p=hotel/petHotel");
+        header("Location: $redirectUrl"); // Redirect based on object_type
         exit();
     }
-} else {
-    $_SESSION['message'] = "Invalid request method.";
-    header("Location: ../Dashboard.php?p=hotel/petHotel");
-    exit();
 }
 ?>

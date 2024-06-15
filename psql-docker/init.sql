@@ -52,6 +52,8 @@ CREATE TABLE health_record (
   	 petID INT REFERENCES pet(petID),
     date DATE,
     time TIME,
+    finished BOOL DEFAULT FALSE,
+    payment  BOOL DEFAULT FALSE,
     -- for staff
     veterinarian VARCHAR(50),		-- ten bac si
     med_instruction TEXT,			-- vd: berberin sang + toi, decolgen ... 
@@ -66,6 +68,8 @@ CREATE TABLE beauty_service (
     petID INT REFERENCES pet(petID),
     date DATE,
     time TIME,
+    finished BOOL DEFAULT FALSE,
+    payment  BOOL DEFAULT FALSE,
     -- for staff
     service_type VARCHAR(100),	
     service_provider VARCHAR(50),
@@ -86,6 +90,8 @@ CREATE TABLE hotel_record (
     petID INT REFERENCES pet(petID),
     check_in DATE,
     check_out DATE,
+    finished BOOL DEFAULT FALSE,
+    payment  BOOL DEFAULT FALSE,
     notes TEXT,
     --
     cost INT

@@ -41,16 +41,18 @@
   </body>
 </html>
 <?php 
-$error = null;
-if (isset($_SESSION['error'])) {
-    $error = $_SESSION['error'];
-    unset($_SESSION['error']); 
+$message = null;
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']); 
 }
-if ($error): 
+if ($message): 
+    $alertClass = (strpos($message, 'Error') === 0) ? 'alert-danger' : 'alert-success';
 ?>
-    <div class="alert alert-danger" role="alert">
-      <?php echo $error; ?>
+    <div class="alert <?php echo $alertClass; ?>" role="alert">
+      <?php echo $message; ?>
     </div>
-  <?php endif; ?>
+<?php endif; ?>
+
 
 

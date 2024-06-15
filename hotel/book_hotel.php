@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($serviceRow = pg_fetch_assoc($serviceResult)) {
             $dailyCost = intval($serviceRow['cost']);
         } else {
-            $_SESSION['error'] = "Error: Service cost not found.";
+            $_SESSION['message'] = "Error: Service cost not found.";
             header("Location: ../Dashboard.php?p=hotel/petHotel");
             exit();
         }
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $countOverlap = intval($overlapRow['count_overlap']);
 
         if ($countOverlap > 0) {
-            $_SESSION['error'] = "Error: This pet already has a booking for overlapping dates.";
+            $_SESSION['message'] = "Error: This pet already has a booking for overlapping dates.";
             header("Location: ../Dashboard.php?p=hotel/petHotel");
             exit();
         }
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($availabilityRow = pg_fetch_assoc($availabilityResult)) {
                 $occupiedCount = intval($availabilityRow['occupied_count']);
                 if ($occupiedCount >= $totalRooms) {
-                    $_SESSION['error'] = "Error: The hotel is fully booked on " . $currentDate->format('Y-m-d') . ".";
+                    $_SESSION['message'] = "Error: The hotel is fully booked on " . $currentDate->format('Y-m-d') . ".";
                     header("Location: ../Dashboard.php?p=hotel/petHotel");
                     exit();
                 }
@@ -89,15 +89,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = pg_execute($conn, "insert_hotel_record", array($petID, $checkInDate, $checkOutDate, $specialNeeds, $totalCost));
 
         if ($result) {
+            $_SESSION['message'] = "Registering successfully";
             header("Location: ../Dashboard.php?p=hotel/petHotel");
             exit();
         } else {
-            $_SESSION['error'] = "Error registering pet for hotel stay.";
+            $_SESSION['message'] = "Error registering pet for hotel stay.";
             header("Location: ../Dashboard.php?p=hotel/petHotel");
             exit();
         }
     } else {
-        $_SESSION['error'] = "Error: Missing required form data.";
+        $_SESSION['message'] = "Error: Missing required form data.";
         header("Location: ../Dashboard.php?p=hotel/petHotel");
         exit();
     }
