@@ -48,7 +48,11 @@ else
           foreach ($users as $user) {
             echo "<tr>";
             echo "<td>" . $i . "</td>";
-            echo "<td>" . $user['name'] . "</td>";
+            if ($user['email'] === $_SESSION['email']) {
+              echo "<td>" . $user['name'] . " (You)</td>";
+            } else {
+              echo "<td>" . $user['name'] . "</td>";
+            }
             echo "<td>" . $user['email'] . "</td>";
             echo "<td>" . $user['phone'] . "</td>";
             echo "<td>" . $user['rank'] . "</td>";
