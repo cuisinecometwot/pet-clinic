@@ -18,9 +18,9 @@ $ownerMenu = array(
 $staffMenu = array(
 	"Homepage" => "index.php",
 	"My Profile" => "?p=myProfile",
-	"Quản lý pets" => "?p=myPets",
-	"Xem lịch khám" => "?p=healthServiceManager",
-	"Vệ sinh - làm đẹp" => "?p=spaManager",
+	"Xem lịch khám" => "?p=bookingManager/healthServiceManager",
+	"Vệ sinh - làm đẹp" => "?p=bookingManager/spaManager",
+	"Quản lý đặt phòng" => "?p=bookingManager/hotelRecordManager",
 	"Lưu giữ" => "?p=hotel/hotelManager"
 );
 

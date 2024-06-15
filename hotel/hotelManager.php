@@ -48,7 +48,7 @@
                 // Default SQL query
                 $sql = "SELECT * FROM hotel_room";
                 
-                // Search by Room ID
+                // Search by Pet ID
                 if(!empty($idSearch)) {
                     $sql .= " WHERE petid = $idSearch";
                 }
@@ -122,6 +122,8 @@
                 } else {
                     echo "No rooms found.";
                 }
+                unset($_SESSION['idSearch']); 
+                unset($_SESSION['filter']);
             ?>
         </div>
     </div>
