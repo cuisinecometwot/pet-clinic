@@ -46,7 +46,7 @@ $(document).ready(function() {
 		$_SESSION['object_id'] = (int) $_GET['object_id'];
 	 }
 	 if (isset($_GET['object_type'])) {
-			$_SESSION['object_type'] = (string) $_GET['object_type'];	
+		$_SESSION['object_type'] = (string) $_GET['object_type'];	
      }
     ?>
     <div class="main_content">

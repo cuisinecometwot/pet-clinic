@@ -23,7 +23,7 @@ require 'models/Profile.php';
 	<tr><td>Old Password</td><td>
 	<input type='text' class="form-control" required></td></tr>
 	<tr><td>New Password</td><td>
-	<input type='password' class="form-control" required></td></tr>
+	<input type='text' class="form-control" required></td></tr>
 	<tr><td>Confirm New Password</td><td>
 	<input type='password' class="form-control" required></td></tr>
 </table>

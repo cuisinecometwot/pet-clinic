@@ -7,9 +7,9 @@
 
 // include 'displayErrors.php';
 $HOST = "localhost";
-$DB = "pet-clinic-ver2";
-$USER = "postgres";
-$PWD = "123";
+$DB = "petclinic";
+$USER = "myuser";
+$PWD = "mypassword";
 
 if (session_status() == PHP_SESSION_NONE)
 	session_start();

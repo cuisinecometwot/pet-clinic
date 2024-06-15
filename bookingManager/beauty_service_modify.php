@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($updateResult) {
         echo "Beauty service information updated successfully.";
-        header("Location: /Dashboard.php?p=bookingManager/spaManager");
+        header("Location: ../Dashboard.php?p=bookingManager/spaManager");
         exit();
     } else {
         echo "Error updating beauty service information.";

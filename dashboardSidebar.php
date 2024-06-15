@@ -12,7 +12,8 @@ $ownerMenu = array(
         "Beauty Service" => "?p=log/beautyService",
         "Health Record" => "?p=log/healthRecord",
         "Hotel Record" => "?p=log/hotelRecord"
-    )
+    ),
+    "Log Out" => "utils/logout.php"
 );
 
 $staffMenu = array(
@@ -21,14 +22,17 @@ $staffMenu = array(
 	"Xem lịch khám" => "?p=bookingManager/healthServiceManager",
 	"Vệ sinh - làm đẹp" => "?p=bookingManager/spaManager",
 	"Quản lý đặt phòng" => "?p=bookingManager/hotelRecordManager",
-	"Lưu giữ" => "?p=hotel/hotelManager"
+	"Lưu giữ" => "?p=hotel/hotelManager",
+	"Log Out" => "utils/logout.php"
 );
 
 $adminMenu = array(
 	"Homepage" => "index.php",
 	"My Profile" => "?p=myProfile",
-	"Quản lý dịch vụ" => "?p=services",
-	"Thống kê - báo cáo" => "?p=reports"
+	"User Profile" => "?p=users",
+	"Manage Services" => "?p=services",
+	"Revenue" => "?p=revenue",
+	"Log Out" => "utils/logout.php"
 );
 
 echo '<div class="container-fluid">

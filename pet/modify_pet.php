@@ -2,9 +2,12 @@
 include '../utils/connect.php';
 
 // Check if pet ID is provided via session
-if(isset($_SESSION['object_id'])) {
-    $petId = intval($_SESSION['object_id']); 
-} else {
+if (isset($_SESSION['object_id'])) 
+{
+	$petId = intval($_SESSION['object_id']); 
+} 
+else 
+{
     echo "Error: Pet ID not provided.";
     exit();
 }
@@ -14,20 +17,24 @@ $query = "SELECT * FROM pet WHERE petid = $1";
 $result = pg_prepare($conn, "get_pet", $query);
 $result = pg_execute($conn, "get_pet", array($petId));
 
-if($row = pg_fetch_assoc($result)) {
+if($row = pg_fetch_assoc($result)) 
+{
     $petName = $row['name'];
     $petAge = $row['age'];
     $petGender = $row['gender'];
     $petSpecies = $row['species'];
     $petNote = $row['note'];
     $petImageLink = $row['image_link'];
-} else {
+} 
+else 
+{
     echo "Error: Pet not found.";
     exit();
 }
 
 // Handle form submission to update pet information
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+{
     // Retrieve updated values from the form
     $newName = $_POST['pet_name'];
     $newAge = $_POST['pet_age'];
@@ -41,11 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateResult = pg_prepare($conn, "update_pet", $updateQuery);
     $updateResult = pg_execute($conn, "update_pet", array($newName, $newAge, $newGender, $newSpecies, $newNote, $newImageLink, $petId));
     
-    if ($updateResult) {
+    if ($updateResult) 
+    {
         echo "Pet information updated successfully.";
-         header("Location: /Dashboard.php?p=pet/myPets");
+         header("Location: ../Dashboard.php?p=pet/myPets");
          exit();
-    } else {
+    } 
+    else 
+    {
         echo "Error updating pet information.";
     }
 }

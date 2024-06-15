@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($updateResult) {
         echo "Hotel record information updated successfully.";
-        header("Location: /Dashboard.php?p=bookingManager/hotelRecordManager"); 
+        header("Location: ../Dashboard.php?p=bookingManager/hotelRecordManager"); 
         exit();
     } else {
         echo "Error updating hotel record information.";

@@ -2,19 +2,23 @@
 include '../utils/connect.php';
 
 // Check if record ID is provided via session
-if (isset($_SESSION['object_id'])) {
+if (isset($_SESSION['object_id'])) 
+{
     $recordId = intval($_SESSION['object_id']);
-} else {
+} 
+else 
+{
     echo "Error: Record ID not provided.";
     exit();
 }
 
 // Retrieve health record details from the database
-$query = "SELECT * FROM health_record WHERE recordID = $1";
+$query = "SELECT * FROM health_record WHERE recordid = $1";
 $result = pg_prepare($conn, "get_health_record", $query);
 $result = pg_execute($conn, "get_health_record", array($recordId));
 
-if ($row = pg_fetch_assoc($result)) {
+if ($row = pg_fetch_assoc($result)) 
+{
     $petId = $row['petid'];
     $date = $row['date'];
     $time = $row['time'];
@@ -25,7 +29,9 @@ if ($row = pg_fetch_assoc($result)) {
     $cost = $row['cost'];
     $finished = ($row['finished'] === 't') ? true : false;
     $payment = ($row['payment'] === 't') ? true : false;
-} else {
+} 
+else 
+{
     echo "Error: Health record not found.";
     exit();
 }
@@ -57,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     additional_instructions = $4, 
                     finished = $5, 
                     payment = $6 
-                    WHERE recordID = $7";
+                    WHERE recordid = $7";
     $updateResult = pg_prepare($conn, "update_health_record", $updateQuery);
     $updateResult = pg_execute($conn, "update_health_record", array(
         $newVeterinarian,
@@ -69,11 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $recordId
     ));
 
-    if ($updateResult) {
+    if ($updateResult) 
+    {
         echo "Health record information updated successfully.";
-        header("Location: /Dashboard.php?p=bookingManager/healthServiceManager");
+        header("Location: ../Dashboard.php?p=bookingManager/healthServiceManager");
         exit();
-    } else {
+    } else 
+    {
+    	
         echo "Error updating health record information.";
     }
 }

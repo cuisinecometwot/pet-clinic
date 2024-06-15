@@ -11,6 +11,6 @@ if(isset($_GET['filter'])) {
 }
 
 // Redirect back to Dashboard.php
-header("Location: /Dashboard.php?p=hotel/hotelManager");
+header("Location: ../Dashboard.php?p=hotel/hotelManager");
 exit();
 ?>

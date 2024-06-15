@@ -9,7 +9,7 @@
         <select class="form-control" id="roomCondition" name="roomCondition" required>
             <option value="Good">Good</option>
             <option value="Decent">Decent</option>
-            <option value="Unusable">Unsuable</option>
+            <option value="Unusable">Unusable</option>
         </select>
     </div>
     <div class="form-group">
@@ -31,12 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $roomImageLink = pg_escape_string($conn, $_POST['roomImageLink']);
 
         // Prepare and execute query
-        $query = "INSERT INTO hotel_room (description, condition, image_link) VALUES ($1, $2, $3, $4)";
+        $query = "INSERT INTO hotel_room (description, condition, image_link) VALUES ($1, $2, $3)";
         $result = pg_prepare($conn, "insert_hotel_room", $query);
         $result = pg_execute($conn, "insert_hotel_room", array($roomDescription, $roomCondition, $roomImageLink));
 
         if ($result) {
-            header("Location: /Dashboard.php?p=hotel/hotelManager");
+            header("Location: ../Dashboard.php?p=hotel/hotelManager");
             exit();
         } else {
             echo "Error: Could not add the room.";

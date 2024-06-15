@@ -14,31 +14,31 @@ if ($_SESSION['role'] == 'owner')
 
 	$num = pg_num_rows($result);
 	if ($num > 0)
-   {
+	{
 		echo "<table class='table table-striped'>";
-      echo "<thead>";
-      echo "<tr>";
-      echo "<th>Name</th>";
-      echo "<th>Age</th>";
-      echo "<th>Gender</th>";
-      echo "<th>Species</th>";
-      echo "<th>Notes</th>";
-      echo "</tr>";
-      echo "</thead>";
-      echo "<tbody>";
+      	echo "<thead>";
+      	echo "<tr>";
+      	echo "<th>Name</th>";
+      	echo "<th>Age</th>";
+      	echo "<th>Gender</th>";
+      	echo "<th>Species</th>";
+      	echo "<th>Notes</th>";
+      	echo "</tr>";
+      	echo "</thead>";
+      	echo "<tbody>";
 
-	  while ($row = pg_fetch_row($result)) {
-		$pet = new Pet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
-		echo "<tr onclick=\"window.location='Dashboard.php?p=pet/modify_pet&object_id=" . urlencode($pet->getPetID()) . "'\" style='cursor: pointer;'>";
-		echo "<td>" . $pet->getName() . "</td>";
-		echo "<td>" . $pet->getAge() . "</td>";
-		echo "<td>" . $pet->getGender() . "</td>";
-		echo "<td>" . $pet->getSpecies() . "</td>";
-		echo "<td>" . $pet->getNotes() . "</td>";
-		echo "</tr>";
-	}		
-      echo "</tbody>";
-      echo "</table>";
+	  	while ($row = pg_fetch_row($result)) {
+			$pet = new Pet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
+			echo "<tr onclick=\"window.location='Dashboard.php?p=pet/modify_pet&object_id=" . urlencode($pet->getPetID()) . "'\" style='cursor: pointer;'>";
+			echo "<td>" . $pet->getName() . "</td>";
+			echo "<td>" . $pet->getAge() . "</td>";
+			echo "<td>" . $pet->getGender() . "</td>";
+			echo "<td>" . $pet->getSpecies() . "</td>";
+			echo "<td>" . $pet->getNotes() . "</td>";
+			echo "</tr>";
+		}		
+      	echo "</tbody>";
+      	echo "</table>";
 
       // Pagination Links
       $totalPets = pg_fetch_row(pg_query($conn, "SELECT COUNT(*) FROM pet WHERE ownerid = (SELECT uid FROM profile WHERE email = '" . $_SESSION['email'] . "')"))[0];

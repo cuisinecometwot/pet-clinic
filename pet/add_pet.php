@@ -1,5 +1,5 @@
 <h3>Add Pet</h3>
-<form action="add_pet.php" method="POST">
+<form action="pet/add_pet.php" method="POST">
   	<div class="form-group">
     	<label for="petName">Pet Name</label>
     	<input type="text" class="form-control" id="petName" name="petName" required>
@@ -29,7 +29,7 @@
 <?php
 include '../utils/connect.php';
 include '../models/Profile.php';
-// Check if form is submitted (improves readability)
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$petName = pg_escape_string($conn, $_POST['petName']);
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   	$result = pg_prepare($conn, "insert_pet", $query);
   	$result = pg_execute($conn, "insert_pet", array($petName, $petAge, $petGender, $petSpecies, $petNote, $ownerId));
 
-	header("Location: Dashboard.php?p=myPets");
+	header("Location: ../Dashboard.php?p=pet/myPets");
 }
 
 ?>
