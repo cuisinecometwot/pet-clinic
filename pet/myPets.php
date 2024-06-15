@@ -1,6 +1,6 @@
 <?php
-include 'utils/connect.php';
-require 'models/Pet.php';
+include '../utils/connect.php';
+require '../models/Pet.php';
 
 $currentPage = isset($_SESSION['current_page']) ? $_SESSION['current_page'] : 1;
 $perPage = 5; // Number of pets per page
@@ -27,17 +27,16 @@ if ($_SESSION['role'] == 'owner')
       echo "</thead>";
       echo "<tbody>";
 
-     	while ($row = pg_fetch_row($result)) {
-     		$pet = new Pet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
-
-     		echo "<tr>";
-        	echo "<td>" . $pet->getName() . "</td>";
-        	echo "<td>" . $pet->getAge() . "</td>";
-        	echo "<td>" . $pet->getGender() . "</td>";
-        	echo "<td>" . $pet->getSpecies() . "</td>";
-        	echo "<td>" . $pet->getNotes() . "</td>";
-        	echo "</tr>";
-      }
+	  while ($row = pg_fetch_row($result)) {
+		$pet = new Pet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7]);
+		echo "<tr onclick=\"window.location='Dashboard.php?p=pet/modify_pet&object_id=" . urlencode($pet->getPetID()) . "'\" style='cursor: pointer;'>";
+		echo "<td>" . $pet->getName() . "</td>";
+		echo "<td>" . $pet->getAge() . "</td>";
+		echo "<td>" . $pet->getGender() . "</td>";
+		echo "<td>" . $pet->getSpecies() . "</td>";
+		echo "<td>" . $pet->getNotes() . "</td>";
+		echo "</tr>";
+	}		
       echo "</tbody>";
       echo "</table>";
 

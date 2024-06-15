@@ -16,7 +16,7 @@ echo $petId;
 	$bookingTime = strtotime("$date $time");
 	if ($bookingTime < $currentTime) 
 	{
-  		echo "Error: Booking date and time cannot be in the past.";
+		$_SESSION['message'] = "Error: Booking date and time cannot be in the past.";
   		exit;
 	}
 	// TODO: Check before INSERT: No insert if a request for the same service exists on the same day.
@@ -27,6 +27,7 @@ echo $petId;
 		$query = "INSERT INTO health_record(petID, date, time, cost) VALUES ($1, $2, $3, $4)";
 		$result = pg_prepare($conn, "insert_health_record", $query);
   		$result = pg_execute($conn, "insert_health_record", array((int)$petId, $date, $time, $services[0]->getCost()));
+		$_SESSION['message'] = "Booking successfully";
 	}
 	if ($hasSpa) 
 	{
@@ -34,7 +35,8 @@ echo $petId;
 		$query = "INSERT INTO beauty_service(petID, date, time, cost) VALUES ($1, $2, $3, $4)";
 		$result = pg_prepare($conn, "insert_beauty_service", $query);
   		$result = pg_execute($conn, "insert_beauty_service", array((int)$petId, $date, $time, $services[1]->getCost()));
+		$_SESSION['message'] = "Booking successfully";
 	}
-	header("Location: ../Dashboard.php?p=logs");
+	header("Location: ../Dashboard.php?p=booking");
 }
 ?>

@@ -25,6 +25,10 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="res/lib/mcss/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- jQuery and Bootstrap JS -->
+    <script src="path/to/jquery.min.js"></script>
+    <script src="path/to/bootstrap.bundle.min.js"></script>
 
     <!-- Template Stylesheet -->
     <link href="res/lib/mcss/style.css" rel="stylesheet">

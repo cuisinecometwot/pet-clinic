@@ -5,19 +5,23 @@ if (session_status() == PHP_SESSION_NONE)
 $ownerMenu = array(
 	"Homepage" => "index.php",
 	"My Profile" => "?p=myProfile",
-	"My Pets" => "?p=myPets",
+	"My Pets" => "?p=pet/myPets",
 	"Đặt lịch" => "?p=booking",
-	"Dịch vụ lưu giữ" => "?p=hotel",
-	"Service Logs" => "?p=logs"
+	"Dịch vụ lưu giữ" => "?p=hotel/petHotel",
+	"Service Logs" => array(
+        "Beauty Service" => "?p=log/beautyService",
+        "Health Record" => "?p=log/healthRecord",
+        "Hotel Record" => "?p=log/hotelRecord"
+    )
 );
 
 $staffMenu = array(
 	"Homepage" => "index.php",
 	"My Profile" => "?p=myProfile",
-	"Quản lý pets" => "?p=myPets",
-	"Xem lịch khám" => "?p=bookingManager",
-	"Vệ sinh - làm đẹp" => "?p=spaManager",
-	"Lưu giữ" => "?p=hotelManager"
+	"Xem lịch khám" => "?p=bookingManager/healthServiceManager",
+	"Vệ sinh - làm đẹp" => "?p=bookingManager/spaManager",
+	"Quản lý đặt phòng" => "?p=bookingManager/hotelRecordManager",
+	"Lưu giữ" => "?p=hotel/hotelManager"
 );
 
 $adminMenu = array(
@@ -45,13 +49,27 @@ switch($role)
 	default:
 		$menu = $ownerMenu;
 }
-foreach ($menu as $menuItem => $url)
-{
-	echo "<li class=\"nav-item\">
-            <a class=\"nav-link active\" href='{$url}'><i class=\"fas fa-home\"></i> {$menuItem}</a>
-        </li>";
+foreach ($menu as $menuItem => $url) {
+    if (is_array($url)) {
+        // If it's an array (sub-menu), display it as a nested list
+        echo '<li class="nav-item">';
+        echo '<a class="nav-link" href="#">' . $menuItem . '</a>';
+        echo '<ul class="submenu" >';
+        foreach ($url as $subMenuItem => $subMenuUrl) {
+            echo '<li><a class="nav-link" href="' . $subMenuUrl . '">' . $subMenuItem . '</a></li>';
+        }
+        echo '</ul>'; // End submenu
+        echo '</li>';
+    } else {
+        // If it's a regular menu item, display it normally
+        echo '<li class="nav-item">';
+        echo '<a class="nav-link" href="' . $url . '">' . $menuItem . '</a>';
+        echo '</li>';
+    }
 }
+
 echo '</ul></div></div></div>';
+
 /* // Good design!
 switch($role) 
 {

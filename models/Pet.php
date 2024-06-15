@@ -7,16 +7,19 @@ class Pet
 	private $gender;
 	private $species;
 	private $notes;
+
 	private $ownerID; // retrieve from DB
+	private $imageLink;
 	
-	public function __construct($id, $name, $age, $gender, $species, $notes, $ownerId) {
+	public function __construct($id, $name, $age, $gender, $species, $notes, $ownerId,$imageLink) {
     	$this->petID = $id;
     	$this->name = $name;
     	$this->age = $age;
     	$this->gender = $gender;
     	$this->species = $species;
     	$this->notes = $notes;
-    	$this->ownerId = $ownerId;
+    	$this->ownerID = $ownerId;
+		$this->imageLink = $imageLink;
   }
 
 	public function getPetID(){
@@ -65,9 +68,16 @@ class Pet
 	public function getOwnerID(){
 		return $this->ownerID;	
    }
+    public function getImageLink() {
+        return $this->imageLink;
+    }
+
+    public function setImageLink($imageLink) {
+        $this->imageLink = $imageLink;
+    }
 }
 
-include 'utils/connect.php';
+include '../utils/connect.php';
 
 if ($_SESSION['role'] == 'owner') 
 {
@@ -90,7 +100,8 @@ if ($_SESSION['role'] == 'owner')
         		$row[3], // gender
         		$row[4], // species (null check handled in constructor)
         		$row[5], // notes (null check handled in constructor)
-        		$row[6]  // ownerID
+        		$row[6],  // ownerID
+				$row[7]
       	);
       	$pets[] = $pet; // Add the Pet object to the pets array
     	}

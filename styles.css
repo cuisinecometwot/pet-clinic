@@ -57,6 +57,8 @@ body{
   color: #fff;
 }
 
+
+
 .wrapper .main_content{
   width: 500%;
   margin-right: 100px;
@@ -79,3 +81,24 @@ body{
 .wrapper .main_content .info div{
   margin-bottom: 20px;
 }
+
+/* Submenu styles */
+.wrapper .submenu {
+  display: none;
+  position: absolute;
+  background: #0061b0;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1); 
+}
+
+.wrapper .submenu li {
+  padding: 10px;
+}
+
+.wrapper .nav-item:hover .submenu {
+  display: block;
+}
+
+.wrapper .submenu li:hover {
+  background-color: #8fce00; 
+}
+
