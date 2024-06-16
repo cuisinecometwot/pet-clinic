@@ -21,11 +21,26 @@ require 'models/Profile.php';
 <form action='controllers/edit_password.php' method='post' autocomplete="off">
 <table class='table table-striped'>
 	<tr><td>Old Password</td><td>
-	<input type='text' class="form-control" required></td></tr>
+	<input type='text' class="form-control" name="oldPassword" required></td></tr>
 	<tr><td>New Password</td><td>
-	<input type='text' class="form-control" required></td></tr>
+	<input type='text' class="form-control" name="newPassword" required></td></tr>
 	<tr><td>Confirm New Password</td><td>
-	<input type='password' class="form-control" required></td></tr>
+	<input type='password' class="form-control" name= "confirmPassword" required></td></tr>
 </table>
 <button type='submit' class="btn btn-success">Update Password</button>
 </form>
+<?php
+// Display the session message
+$message = null;
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    unset($_SESSION['message']); 
+}
+
+if ($message): 
+    $alertClass = (strpos($message, 'Error') === 0) ? 'alert-danger' : 'alert-success';
+?>
+    <div class="alert <?php echo $alertClass; ?>" role="alert">
+      <?php echo $message; ?>
+    </div>
+<?php endif; ?>
