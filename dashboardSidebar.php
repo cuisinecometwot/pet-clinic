@@ -29,8 +29,8 @@ $staffMenu = array(
 $adminMenu = array(
 	"Homepage" => "index.php",
 	"My Profile" => "?p=myProfile",
-	"User Profile" => "?p=users",
-	"Manage Services" => "?p=services",
+	"User Profile" => "?p=userManager/users",
+	"Manage Services" => "?p=serviceManager/services",
 	"Revenue" => "?p=revenue",
 	"Log Out" => "utils/logout.php"
 );

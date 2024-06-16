@@ -18,7 +18,7 @@ CREATE TABLE profile (
     name VARCHAR(30),
     email VARCHAR(50) NOT NULL,
     phone CHAR(12),
-    rank VARCHAR(10)
+    rank VARCHAR(30)
 );
 
 -- Why we want to remove pets
