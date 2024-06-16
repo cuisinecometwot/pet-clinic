@@ -3,7 +3,11 @@ include '../utils/connect.php';
 include '../models/Record.php';
 
 // Health Records Query
-$healthQuery = "SELECT * FROM health_record";
+$profile_id = $_SESSION['profile_id'];
+$healthQuery = "SELECT hr.recordID, hr.petID, hr.date, hr.time, p.name AS veterinarian, hr.med_instruction, hr.diet_instructions, hr.additional_instructions, hr.cost, hr.finished, hr.payment
+               FROM health_record hr
+              LEFT JOIN profile p ON hr.staffid = p.uid
+               WHERE hr.petID IN (SELECT petID FROM pet WHERE ownerID = $profile_id)";
 $healthResult = pg_query($conn, $healthQuery);
 if (!$healthResult) {
   echo "Error retrieving health records: " . pg_error($conn);
@@ -50,15 +54,7 @@ if (!$healthResult) {
         <td><?php echo $row['additional_instructions']; ?></td>
         <td><?php echo $row['cost']; ?></td>
         <td><?php echo $row['finished'] === 't' ? 'Yes' : 'No'; ?></td>
-        <td>
-            <?php if ($row['payment'] === 't') : ?>
-                Paid
-            <?php else : ?>
-                <a href="Dashboard.php?p=payment&object_id=<?php echo $row['recordid']; ?>&object_type=health_record" style="text-decoration: none; color: inherit;">
-                    Not Paid
-                </a>
-            <?php endif; ?>
-        </td>
+        <td><?php echo $row['payment'] === 't' ? 'Paid' : 'Not Paid'; ?></td>
       </tr>
     <?php endwhile; ?>
   </tbody>

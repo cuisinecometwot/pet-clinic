@@ -95,7 +95,7 @@
         <td><?php echo $row['date']; ?></td>
         <td><?php echo $row['time']; ?></td>
         <td><?php echo $row['service_type']; ?></td>
-        <td><?php echo $row['service_provider']; ?></td>
+        <td><?php echo $row['staffid']; ?></td>
         <td><?php echo $row['notes']; ?></td>
         <td><?php echo $row['cost']; ?></td>
         <td><?php echo $row['finished'] === 't' ? 'Yes' : 'No'; ?></td>

@@ -3,7 +3,8 @@ include '../utils/connect.php';
 include '../models/Record.php';
 
 // Hotel Records Query
-$hotelQuery = "SELECT * FROM hotel_record";
+$profile_id = $_SESSION['profile_id'];
+$hotelQuery = "SELECT * FROM hotel_record WHERE petID IN (SELECT petID FROM pet WHERE ownerID = $profile_id)";
 $hotelResult = pg_query($conn, $hotelQuery);
 if (!$hotelResult) {
   echo "Error retrieving hotel records: " . pg_error($conn);

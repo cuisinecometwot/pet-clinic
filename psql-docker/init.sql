@@ -35,7 +35,7 @@ CREATE TABLE pet (
     gender VARCHAR(10),
     species VARCHAR(20),
     note VARCHAR(500),
-    ownerID INT, --REFERENCES profile(uid)
+    ownerID INT REFERENCES profile(uid),
     image_link VARCHAR(500)
 );
 
@@ -49,13 +49,13 @@ CREATE TABLE hotel_room (
 
 CREATE TABLE health_record (
     recordID SERIAL PRIMARY KEY,
-  	 petID INT REFERENCES pet(petID),
+  	petID INT REFERENCES pet(petID),
     date DATE,
     time TIME,
     finished BOOL DEFAULT FALSE,
     payment  BOOL DEFAULT FALSE,
     -- for staff
-    veterinarian VARCHAR(50),		-- ten bac si
+    staffID INT REFERENCES profile(uid),		-- ten bac si
     med_instruction TEXT,			-- vd: berberin sang + toi, decolgen ... 
     diet_instructions TEXT, 		-- an nhieu rau xanh, uong it cola
     additional_instructions TEXT,	-- optional
@@ -72,7 +72,7 @@ CREATE TABLE beauty_service (
     payment  BOOL DEFAULT FALSE,
     -- for staff
     service_type VARCHAR(100),	
-    service_provider VARCHAR(50),
+    staffID INT REFERENCES profile(uid),
     notes TEXT,
     --
     cost INT
@@ -90,6 +90,7 @@ CREATE TABLE hotel_record (
     petID INT REFERENCES pet(petID),
     check_in DATE,
     check_out DATE,
+    ownerID INT REFERENCES profile(uid),
     finished BOOL DEFAULT FALSE,
     payment  BOOL DEFAULT FALSE,
     notes TEXT,

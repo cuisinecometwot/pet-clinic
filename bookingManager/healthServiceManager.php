@@ -96,7 +96,7 @@
         <td><?php echo $row['petid']; ?></td>
         <td><?php echo $row['date']; ?></td>
         <td><?php echo $row['time']; ?></td>
-        <td><?php echo $row['veterinarian']; ?></td>
+        <td><?php echo $row['staffid']; ?></td>
         <td><?php echo $row['med_instruction']; ?></td>
         <td><?php echo $row['diet_instructions']; ?></td>
         <td><?php echo $row['additional_instructions']; ?></td>

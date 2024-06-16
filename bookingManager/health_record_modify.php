@@ -22,7 +22,7 @@ if ($row = pg_fetch_assoc($result))
     $petId = $row['petid'];
     $date = $row['date'];
     $time = $row['time'];
-    $veterinarian = $row['veterinarian'];
+    $veterinarian = $row['staffid'];
     $medInstruction = $row['med_instruction'];
     $dietInstructions = $row['diet_instructions'];
     $additionalInstructions = $row['additional_instructions'];
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Update the health record information in the database
     $updateQuery = "UPDATE health_record SET 
-                    veterinarian = $1, 
+                    staffid = $1, 
                     med_instruction = $2, 
                     diet_instructions = $3, 
                     additional_instructions = $4, 

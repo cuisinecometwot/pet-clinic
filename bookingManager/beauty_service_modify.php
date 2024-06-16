@@ -18,7 +18,7 @@ if ($row = pg_fetch_assoc($result)) {
     $petId = $row['petid'];
     $date = $row['date'];
     $time = $row['time'];
-    $serviceType = $row['service_type'];
+    $serviceType = $row['staffid'];
     $serviceProvider = $row['service_provider'];
     $notes = $row['notes'];
     $cost = $row['cost'];
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Update the beauty service information in the database
     $updateQuery = "UPDATE beauty_service SET 
                     service_type = $1, 
-                    service_provider = $2, 
+                    staffid = $2, 
                     notes = $3, 
                     finished = $4, 
                     payment = $5 
