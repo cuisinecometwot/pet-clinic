@@ -21,10 +21,17 @@ if ($role == "owner")
 		$storedPWD = pg_fetch_assoc($result)['pwd'];
 		echo $storedPWD;
 		echo $password;
+		$profile_query = pg_prepare($conn, "findProfile", 'SELECT uid FROM profile WHERE email = $1');
+        $profile_result = pg_execute($conn, "findProfile", [$email]);
+        $profile_row = pg_fetch_assoc($profile_result);
+        $uid = $profile_row['uid'];
+        $_SESSION['profile_id'] = $uid; // Store uid in session
+
 		if (strcmp($password, $storedPWD)==0)
 		{
 			$_SESSION['role'] = $role;
 			$_SESSION['email'] = $email;
+			$_SESSION['profile_id'] = $uid;
 			header('Location: ../Dashboard.php');
 		} 
 

@@ -2,11 +2,31 @@
 include '../utils/connect.php';
 include '../models/Record.php';
 
-// Beauty Services Query
-$beautyQuery = "SELECT * FROM beauty_service";
-$beautyResult = pg_query($conn, $beautyQuery);
+$profile_id = $_SESSION['profile_id'];
+
+$beautyServiceQuery = "
+    SELECT 
+        bs.serviceID, 
+        bs.petID, 
+        bs.date, 
+        bs.time, 
+        p.name AS service_provider, 
+        bs.service_type, 
+        bs.notes, 
+        bs.cost, 
+        bs.finished, 
+        bs.payment
+    FROM 
+        beauty_service bs
+    LEFT JOIN 
+        profile p ON bs.staffID = p.uid
+    WHERE 
+        bs.petID IN (SELECT petID FROM pet WHERE ownerID = $profile_id)
+";
+
+$beautyResult = pg_query($conn, $beautyServiceQuery);
 if (!$beautyResult) {
-    echo "Error retrieving beauty services: " . pg_last_error($conn);
+    echo "Error retrieving beauty services: " . pg_error($conn);
     exit;
 }
 ?>

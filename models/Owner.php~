@@ -43,7 +43,7 @@ class Owner
 }
 
 if ($_SESSION['role'] == 'owner'){
-	$result = pg_prepare($conn, "my_query1", 'SELECT * FROM owner WHERE email = $1');
+	$result = pg_prepare($conn, "my_query1", 'SELECT * FROM owner_login WHERE email = $1');
   	$result = pg_execute($conn, "my_query1", [$_SESSION['email']]);
   	$num = pg_num_rows($result);
   	if ($num == 1) 
