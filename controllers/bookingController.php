@@ -37,6 +37,6 @@ echo $petId;
   		$result = pg_execute($conn, "insert_beauty_service", array((int)$petId, $date, $time, $services[1]->getCost()));
 		$_SESSION['message'] = "Booking successfully";
 	}
-	header("Location: ../Dashboard.php?p=booking");
+	header("Location: ../views/Dashboard.php?p=owner/booking");
 }
 ?>

@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate passwords match
     if ($newPassword !== $confirmPassword) {
         $_SESSION['message'] = 'Error: New passwords do not match.';
-        header("Location: ../Dashboard.php?p=myProfile"); 
+        header("Location: ../views/Dashboard.php?p=myProfile"); 
         exit();
     }
     

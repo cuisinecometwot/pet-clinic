@@ -48,7 +48,7 @@ class Service {
   }
 }
 
-include 'utils/connect.php';
+include __DIR__ . '/../utils/connect.php';
 $services = [];
 
 $sql = "SELECT * FROM service_list"; 

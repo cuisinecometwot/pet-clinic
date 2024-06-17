@@ -26,6 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     $_SESSION['message'] = 'Error: Invalid request method.';
 }
-header("Location: ../Dashboard.php?p=serviceManager/services");
+header("Location: ../views/Dashboard.php?p=admin/serviceManager/services");
 exit();
 ?>

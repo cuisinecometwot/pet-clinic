@@ -32,14 +32,14 @@ if ($role == "owner")
 			$_SESSION['role'] = $role;
 			$_SESSION['email'] = $email;
 			$_SESSION['profile_id'] = $uid;
-			header('Location: ../Dashboard.php');
+			header('Location: ../views/Dashboard.php');
 		} 
 
 	} 
 	else 
 	{
 		echo $alertFailed;
-    	header('Location: ../Login.php');
+    	header('Location: ../views/Login.php');
 	}
 }
 
@@ -63,7 +63,7 @@ else if ($role == "clinic")
 				$_SESSION['role'] = 'admin';
 			
 			$_SESSION['email'] = $email;
-			header('Location: ../Dashboard.php');
+			header('Location: ../views/Dashboard.php');
 		} 
 		else echo $alertFailed; 
 	} 

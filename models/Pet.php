@@ -77,7 +77,7 @@ class Pet
     }
 }
 
-include '../utils/connect.php';
+include __DIR__ . '/../utils/connect.php';
 
 if ($_SESSION['role'] == 'owner') 
 {
