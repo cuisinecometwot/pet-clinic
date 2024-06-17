@@ -38,15 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if update was successful
     if ($updateResult) {
         $_SESSION['message'] = 'Password updated successfully.';
-        header("Location: ../Dashboard.php?p=myProfile"); 
+        header("Location: ../views/Dashboard.php?p=myProfile"); 
         exit();
     } else {
         $_SESSION['message'] = 'Error: Failed to update password.';
-        header("Location: ../Dashboard.php?p=myProfile"); 
+        header("Location: ../views/Dashboard.php?p=myProfile"); 
         exit();
     }
 } else {
-    header("Location: ../Dashboard.php?p=myProfile");
+    header("Location: ../views/Dashboard.php?p=myProfile");
     exit();
 }
 ?>

@@ -60,11 +60,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 }
     
-     // Health Records Query
-     $healthQuery = "SELECT * FROM health_record WHERE petid = $1";
-     $healthResult = pg_prepare($conn, "get_health_records", $healthQuery);
-     $healthResult = pg_execute($conn, "get_health_records", array($petId));
+// Health Records Query
+$healthQuery = "SELECT hr.recordID, hr.petID, hr.date, hr.time, p.name AS veterinarian, hr.med_instruction, hr.diet_instructions, hr.additional_instructions, hr.cost, hr.finished, hr.payment
+                FROM health_record hr
+                LEFT JOIN profile p ON hr.staffid = p.uid
+                WHERE hr.petID = $1";
+
+$healthStmt = pg_prepare($conn, "get_health_records", $healthQuery);
+$healthResult = pg_execute($conn, "get_health_records", array($petId));
+
+if (!$healthResult) {
+    echo "Error retrieving health records: " . pg_last_error($conn);
+    exit();
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,6 +141,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                     <th>Med Instruction</th>
                     <th>Diet</th>
                     <th>Additional instructions</th>
+                    <th>Cost</th>
+                    <th>Finished</th>
+                    <th>Payment</th>
                 </tr>
             </thead>
             <tbody>
@@ -144,6 +157,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                         <td><?php echo $row['med_instruction']; ?></td>
                         <td><?php echo $row['diet_instructions']; ?></td>
                         <td><?php echo $row['additional_instructions']; ?></td>
+                        <td><?php echo $row['cost']; ?></td>
+                        <td><?php echo $row['finished'] === 't' ? 'Yes' : 'No'; ?></td>
+                        <td><?php echo $row['payment'] === 't' ? 'Paid' : 'Not Paid'; ?></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
@@ -152,5 +168,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
+
 
 

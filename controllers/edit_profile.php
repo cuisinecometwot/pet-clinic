@@ -1,7 +1,6 @@
 <?php
 include '../utils/connect.php'; 
 require '../models/Profile.php'; 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = htmlspecialchars(trim($_POST['name']));
@@ -10,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (empty($name) || empty($email) || empty($phone_number)) {
         $_SESSION['message'] = 'Please fill in all required fields.';
-        header("Location: ../Dashboard.php?p=myProfile"); 
+        header("Location: ../views/Dashboard.php?p=myProfile"); 
         exit();
     }
     
@@ -26,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     
-    header("Location: ../Dashboard.php?p=myProfile"); 
+    header("Location: ../views/Dashboard.php?p=myProfile"); 
     exit();
 } else {
     
     $_SESSION['message'] = 'Unauthorized access.';
-    header("Location: ../Dashboard.php?p=myProfile"); 
+    header("Location: ../views/Dashboard.php?p=myProfile"); 
     exit();
 }
 ?>

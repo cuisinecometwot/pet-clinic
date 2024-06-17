@@ -48,14 +48,17 @@ else if ($role == "clinic")
     $result = pg_prepare($conn, "findStaff", 'SELECT * FROM clinic_login WHERE email = $1');
 	$result = pg_execute($conn, "findStaff", [$email]);
     $num = pg_num_rows($result);
-
+    $profile_query = pg_prepare($conn, "findProfile", 'SELECT uid FROM profile WHERE email = $1');
+    $profile_result = pg_execute($conn, "findProfile", [$email]);
+    $profile_row = pg_fetch_assoc($profile_result);
+    $uid = $profile_row['uid'];
+    $_SESSION['profile_id'] = $uid; // Store uid in session
 	if ($num == 1)
 	{
 		//$storedPWD = pg_fetch_assoc($result)['pwd'];
 		$row = pg_fetch_assoc($result);
 		$storedPWD = $row['pwd'];
 		$is_admin = $row['is_admin'];
-		
 		if (strcmp($password, $storedPWD)==0)
 		{
 			$_SESSION['role'] = $role;
